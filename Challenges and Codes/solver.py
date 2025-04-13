@@ -1,0 +1,18 @@
+from Crypto.Util.number import long_to_bytes, inverse
+
+# Given values:
+N = 16386700067623583195251173995153899823031045687032564461647775547501212601555562649151875118362301284820352275009039973000096946604697988141748974443393446
+e = 65537
+c = 13231676297710836319662114092663326850791833988921385934500944430485981797689909646449959785978156783307543340274264855702548998333231030810720045366986519
+
+# Factor N (this is the hard part—use a factoring tool)
+# Suppose you get:
+p = 130517 ...  # (p should be a prime factor of N)
+q = 125323 ...  # (q should be the other prime factor)
+# (Replace with the actual factors you find)
+
+phi = (p - 1) * (q - 1)
+d = inverse(e, phi)
+m = pow(c, d, N)
+flag = long_to_bytes(m)
+print(flag)

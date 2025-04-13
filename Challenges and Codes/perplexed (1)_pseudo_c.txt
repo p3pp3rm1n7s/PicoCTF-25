@@ -1,0 +1,893 @@
+/*
+Type: ELF
+Platform: linux-x86_64
+Architecture: x86_64
+
+Libraries: 
+  libc.so.6
+
+Segments:
+r--  0x00400000-0x004005f8 
+r-x  0x00401000-0x00401459 
+r--  0x00402000-0x00402120 
+rw-  0x00403df8-0x00404040 
+---  0x00404040-0x00404070 
+---  0x00404070-0x00404098 
+
+Sections:
+0x00400318-0x00400334  .interp (PROGBITS)  {Read-only data}
+0x00400338-0x00400378  .note.gnu.property (NOTE)  {Read-only data}
+0x00400378-0x0040039c  .note.gnu.build-id (NOTE)  {Read-only data}
+0x0040039c-0x004003bc  .note.ABI-tag (NOTE)  {Read-only data}
+0x004003c0-0x004003e4  .gnu.hash  {Read-only data}
+0x004003e8-0x004004a8  .dynsym (DYNSYM)  {Read-only data}
+0x004004a8-0x0040050a  .dynstr (STRTAB)  {Read-only data}
+0x0040050a-0x0040051a  .gnu.version  {Read-only data}
+0x00400520-0x00400550  .gnu.version_r  {Read-only data}
+0x00400550-0x00400598  .dynamic_rela  {Read-only data}
+0x00400550-0x00400598  .rela.dyn (RELA)  {Read-only data}
+0x00400598-0x004005f8  .rela.plt (RELA)  {Read-only data}
+0x00401000-0x0040101b  .init (PROGBITS)  {Code}
+0x00401020-0x00401070  .plt (PROGBITS)  {Code}
+0x00401070-0x0040144a  .text (PROGBITS)  {Code}
+0x0040144c-0x00401459  .fini (PROGBITS)  {Code}
+0x00402000-0x0040203b  .rodata (PROGBITS)  {Read-only data}
+0x0040203c-0x00402070  .eh_frame_hdr (PROGBITS)  {Read-only data}
+0x00402070-0x00402120  .eh_frame (PROGBITS)  {Read-only data}
+0x00403df8-0x00403e00  .init_array  {Writable data}
+0x00403e00-0x00403e08  .fini_array  {Writable data}
+0x00403e08-0x00403fd8  .dynamic (DYNAMIC)  {Read-only data}
+0x00403fd8-0x00403fe8  .got (PROGBITS)  {Read-only data}
+0x00403fe8-0x00404020  .got.plt (PROGBITS)  {Writable data}
+0x00404020-0x00404024  .data (PROGBITS)  {Writable data}
+0x00404030-0x00404040  .bss (NOBITS)  {Writable data}
+0x00404040-0x00404070  .extern  {External}
+0x00404070-0x00404098  .synthetic_builtins  {External}
+*/
+struct Elf64_Header __elf_header = 
+{
+    struct Elf64_Ident ident = 
+    {
+        char signature[0x4] = "\x7fELF"
+        uint8_t file_class = 0x2
+        uint8_t encoding = 0x1
+        uint8_t version = 0x1
+        uint8_t os = 0x0
+        uint8_t abi_version = 0x0
+        char pad[0x7] = "\x00\x00\x00\x00\x00\x00", 0
+    }
+    enum e_type type = ET_EXEC
+    enum e_machine machine = EM_X86_64
+    uint32_t version = 0x1
+    void (* entry)() = _start
+    uint64_t program_header_offset = 0x40
+    uint64_t section_header_offset = 0x39d0
+    uint32_t flags = 0x0
+    uint16_t header_size = 0x40
+    uint16_t program_header_size = 0x38
+    uint16_t program_header_count = 0xd
+    uint16_t section_header_size = 0x40
+    uint16_t section_header_count = 0x20
+    uint16_t string_table = 0x1f
+}
+struct Elf64_ProgramHeader __elf_program_headers[0xd] = 
+{
+    [0x0] = 
+    {
+        enum p_type type = PT_PHDR
+        enum p_flags flags = PF_R
+        uint64_t offset = 0x40
+        uint64_t virtual_address = 0x400040
+        uint64_t physical_address = 0x400040
+        uint64_t file_size = 0x2d8
+        uint64_t memory_size = 0x2d8
+        uint64_t align = 0x8
+    }
+    [0x1] = 
+    {
+        enum p_type type = PT_INTERP
+        enum p_flags flags = PF_R
+        uint64_t offset = 0x318
+        uint64_t virtual_address = 0x400318
+        uint64_t physical_address = 0x400318
+        uint64_t file_size = 0x1c
+        uint64_t memory_size = 0x1c
+        uint64_t align = 0x1
+    }
+    [0x2] = 
+    {
+        enum p_type type = PT_LOAD
+        enum p_flags flags = PF_R
+        uint64_t offset = 0x0
+        uint64_t virtual_address = 0x400000
+        uint64_t physical_address = 0x400000
+        uint64_t file_size = 0x5f8
+        uint64_t memory_size = 0x5f8
+        uint64_t align = 0x1000
+    }
+    [0x3] = 
+    {
+        enum p_type type = PT_LOAD
+        enum p_flags flags = PF_X | PF_R
+        uint64_t offset = 0x1000
+        uint64_t virtual_address = 0x401000
+        uint64_t physical_address = 0x401000
+        uint64_t file_size = 0x459
+        uint64_t memory_size = 0x459
+        uint64_t align = 0x1000
+    }
+    [0x4] = 
+    {
+        enum p_type type = PT_LOAD
+        enum p_flags flags = PF_R
+        uint64_t offset = 0x2000
+        uint64_t virtual_address = 0x402000
+        uint64_t physical_address = 0x402000
+        uint64_t file_size = 0x120
+        uint64_t memory_size = 0x120
+        uint64_t align = 0x1000
+    }
+    [0x5] = 
+    {
+        enum p_type type = PT_LOAD
+        enum p_flags flags = PF_W | PF_R
+        uint64_t offset = 0x2df8
+        uint64_t virtual_address = 0x403df8
+        uint64_t physical_address = 0x403df8
+        uint64_t file_size = 0x22c
+        uint64_t memory_size = 0x248
+        uint64_t align = 0x1000
+    }
+    [0x6] = 
+    {
+        enum p_type type = PT_DYNAMIC
+        enum p_flags flags = PF_W | PF_R
+        uint64_t offset = 0x2e08
+        uint64_t virtual_address = 0x403e08
+        uint64_t physical_address = 0x403e08
+        uint64_t file_size = 0x1d0
+        uint64_t memory_size = 0x1d0
+        uint64_t align = 0x8
+    }
+    [0x7] = 
+    {
+        enum p_type type = PT_NOTE
+        enum p_flags flags = PF_R
+        uint64_t offset = 0x338
+        uint64_t virtual_address = 0x400338
+        uint64_t physical_address = 0x400338
+        uint64_t file_size = 0x40
+        uint64_t memory_size = 0x40
+        uint64_t align = 0x8
+    }
+    [0x8] = 
+    {
+        enum p_type type = PT_NOTE
+        enum p_flags flags = PF_R
+        uint64_t offset = 0x378
+        uint64_t virtual_address = 0x400378
+        uint64_t physical_address = 0x400378
+        uint64_t file_size = 0x44
+        uint64_t memory_size = 0x44
+        uint64_t align = 0x4
+    }
+    [0x9] = 
+    {
+        enum p_type type = PT_GNU_PROPERTY
+        enum p_flags flags = PF_R
+        uint64_t offset = 0x338
+        uint64_t virtual_address = 0x400338
+        uint64_t physical_address = 0x400338
+        uint64_t file_size = 0x40
+        uint64_t memory_size = 0x40
+        uint64_t align = 0x8
+    }
+    [0xa] = 
+    {
+        enum p_type type = PT_GNU_EH_FRAME
+        enum p_flags flags = PF_R
+        uint64_t offset = 0x203c
+        uint64_t virtual_address = 0x40203c
+        uint64_t physical_address = 0x40203c
+        uint64_t file_size = 0x34
+        uint64_t memory_size = 0x34
+        uint64_t align = 0x4
+    }
+    [0xb] = 
+    {
+        enum p_type type = PT_GNU_STACK
+        enum p_flags flags = PF_W | PF_R
+        uint64_t offset = 0x0
+        uint64_t virtual_address = 0x0
+        uint64_t physical_address = 0x0
+        uint64_t file_size = 0x0
+        uint64_t memory_size = 0x0
+        uint64_t align = 0x10
+    }
+    [0xc] = 
+    {
+        enum p_type type = PT_GNU_RELRO
+        enum p_flags flags = PF_R
+        uint64_t offset = 0x2df8
+        uint64_t virtual_address = 0x403df8
+        uint64_t physical_address = 0x403df8
+        uint64_t file_size = 0x208
+        uint64_t memory_size = 0x208
+        uint64_t align = 0x1
+    }
+}
+
+.interp (PROGBITS) section started  {0x400318-0x400334}
+char __elf_interp[0x1c] = "/lib64/ld-linux-x86-64.so.2", 0
+.interp (PROGBITS) section ended  {0x400318-0x400334}
+
+                                                            00 00 00 00                                              ....
+
+.note.gnu.property (NOTE) section started  {0x400338-0x400378}
+                                                                        04 00 00 00 30 00 00 00                          ....0...
+05 00 00 00 47 4e 55 00 02 80 00 c0 04 00 00 00 01 00 00 00 00 00 00 00 01 00 01 c0 04 00 00 00  ....GNU.........................
+01 00 00 00 00 00 00 00 02 00 01 c0 04 00 00 00 00 00 00 00 00 00 00 00                          ........................
+.note.gnu.property (NOTE) section ended  {0x400338-0x400378}
+
+.note.gnu.build-id (NOTE) section started  {0x400378-0x40039c}
+                                                                        04 00 00 00 14 00 00 00                          ........
+03 00 00 00 47 4e 55 00 85 48 0b 12 e6 66 f3 76 90 9d 57 d2 82 a1 ef 0f 30 e9 3d b4              ....GNU..H...f.v..W.....0.=.
+.note.gnu.build-id (NOTE) section ended  {0x400378-0x40039c}
+
+.note.ABI-tag (NOTE) section started  {0x40039c-0x4003bc}
+__abi_tag:
+                                                                                    04 00 00 00                              ....
+10 00 00 00 01 00 00 00 47 4e 55 00 00 00 00 00 03 00 00 00 02 00 00 00 00 00 00 00              ........GNU.................
+.note.ABI-tag (NOTE) section ended  {0x40039c-0x4003bc}
+
+                                                                                    00 00 00 00                              ....
+
+.gnu.hash section started  {0x4003c0-0x4003e4}
+02 00 00 00 07 00 00 00 01 00 00 00 06 00 00 00 00 00 20 00 80 00 00 00 00 00 00 00 07 00 00 00  .................. .............
+67 55 61 10                                                                                      gUa.
+.gnu.hash section ended  {0x4003c0-0x4003e4}
+
+            00 00 00 00                                                                              ....
+
+.dynsym (DYNSYM) section started  {0x4003e8-0x4004a8}
+struct Elf64_Sym __elf_symbol_table[0x8] = 
+{
+    [0x0] = 
+    {
+        uint32_t st_name = 0x0
+        uint8_t st_info = 0x0
+        uint8_t st_other = 0x0
+        uint16_t st_shndx = 0x0
+        uint64_t st_value = 0x0
+        uint64_t st_size = 0x0
+    }
+    [0x1] = 
+    {
+        uint32_t st_name = 0x19
+        uint8_t st_info = 0x12
+        uint8_t st_other = 0x0
+        uint16_t st_shndx = 0x0
+        uint64_t st_value = 0x0
+        uint64_t st_size = 0x0
+    }
+    [0x2] = 
+    {
+        uint32_t st_name = 0xd
+        uint8_t st_info = 0x12
+        uint8_t st_other = 0x0
+        uint16_t st_shndx = 0x0
+        uint64_t st_value = 0x0
+        uint64_t st_size = 0x0
+    }
+    [0x3] = 
+    {
+        uint32_t st_name = 0x12
+        uint8_t st_info = 0x12
+        uint8_t st_other = 0x0
+        uint16_t st_shndx = 0x0
+        uint64_t st_value = 0x0
+        uint64_t st_size = 0x0
+    }
+    [0x4] = 
+    {
+        uint32_t st_name = 0x2b
+        uint8_t st_info = 0x12
+        uint8_t st_other = 0x0
+        uint16_t st_shndx = 0x0
+        uint64_t st_value = 0x0
+        uint64_t st_size = 0x0
+    }
+    [0x5] = 
+    {
+        uint32_t st_name = 0x1
+        uint8_t st_info = 0x12
+        uint8_t st_other = 0x0
+        uint16_t st_shndx = 0x0
+        uint64_t st_value = 0x0
+        uint64_t st_size = 0x0
+    }
+    [0x6] = 
+    {
+        uint32_t st_name = 0x53
+        uint8_t st_info = 0x20
+        uint8_t st_other = 0x0
+        uint16_t st_shndx = 0x0
+        uint64_t st_value = 0x0
+        uint64_t st_size = 0x0
+    }
+    [0x7] = 
+    {
+        uint32_t st_name = 0x7
+        uint8_t st_info = 0x11
+        uint8_t st_other = 0x0
+        uint16_t st_shndx = 0x19
+        uint64_t st_value = 0x404030
+        uint64_t st_size = 0x8
+    }
+}
+.dynsym (DYNSYM) section ended  {0x4003e8-0x4004a8}
+
+.dynstr (STRTAB) section started  {0x4004a8-0x40050a}
+                        00                                                                               .
+
+char data_4004a9[0x6] = "fgets", 0
+char data_4004af[0x6] = "stdin", 0
+char data_4004b5[0x5] = "puts", 0
+char data_4004ba[0x7] = "strlen", 0
+char data_4004c1[0x12] = "__libc_start_main", 0
+char data_4004d3[0x7] = "printf", 0
+char data_4004da[0xa] = "libc.so.6", 0
+char data_4004e4[0xc] = "GLIBC_2.2.5", 0
+char data_4004f0[0xb] = "GLIBC_2.34", 0
+char data_4004fb[0xf] = "__gmon_start__", 0
+.dynstr (STRTAB) section ended  {0x4004a8-0x40050a}
+
+.gnu.version section started  {0x40050a-0x40051a}
+                              00 00 02 00 03 00 03 00 03 00 03 00 01 00 03 00                              ................
+.gnu.version section ended  {0x40050a-0x40051a}
+
+                                                                              00 00 00 00 00 00                            ......
+
+.gnu.version_r section started  {0x400520-0x400550}
+01 00 02 00 32 00 00 00 10 00 00 00 00 00 00 00 75 1a 69 09 00 00 03 00 3c 00 00 00 10 00 00 00  ....2...........u.i.....<.......
+b4 91 96 06 00 00 02 00 48 00 00 00 00 00 00 00                                                  ........H.......
+.gnu.version_r section ended  {0x400520-0x400550}
+
+.dynamic_rela section started  {0x400550-0x400598}
+.rela.dyn (RELA) section started  {0x400550-0x400598}
+struct Elf64_Rela __elf_rela_table[0x3] = 
+{
+    [0x0] = 
+    {
+        uint64_t r_offset = 0x403fd8
+        uint64_t r_info = 0x100000006
+        int64_t r_addend = 0x0
+    }
+    [0x1] = 
+    {
+        uint64_t r_offset = 0x403fe0
+        uint64_t r_info = 0x600000006
+        int64_t r_addend = 0x0
+    }
+    [0x2] = 
+    {
+        uint64_t r_offset = 0x404030
+        uint64_t r_info = 0x700000005
+        int64_t r_addend = 0x0
+    }
+}
+.dynamic_rela section ended  {0x400550-0x400598}
+.rela.dyn (RELA) section ended  {0x400550-0x400598}
+
+.rela.plt (RELA) section started  {0x400598-0x4005f8}
+void* data_400598 = puts
+
+07 00 00 00 02 00 00 00 00 00 00 00 00 00 00 00                                                  ................
+
+void* data_4005b0 = strlen
+
+                                                                        07 00 00 00 03 00 00 00                          ........
+00 00 00 00 00 00 00 00                                                                          ........
+
+void* data_4005c8 = printf
+
+                                                07 00 00 00 04 00 00 00 00 00 00 00 00 00 00 00                  ................
+
+void* data_4005e0 = fgets
+
+                        07 00 00 00 05 00 00 00 00 00 00 00 00 00 00 00                                  ................
+.rela.plt (RELA) section ended  {0x400598-0x4005f8}
+
+.init (PROGBITS) section started  {0x401000-0x40101b}
+
+void _init()
+
+{
+    if (__gmon_start__ != 0)
+        __gmon_start__();
+}
+
+.init (PROGBITS) section ended  {0x401000-0x40101b}
+
+                                                                                 00 00 00 00 00                             .....
+
+.plt (PROGBITS) section started  {0x401020-0x401070}
+
+int64_t sub_401020()
+
+int64_t var_8  {Frame offset -8}
+
+{
+    int64_t var_8 = data_403ff0;
+    /* jump -> data_403ff8 */
+}
+
+                                    0f 1f 40 00                                                              ..@.
+
+int32_t puts(char const* str)
+
+char const* str  {Register rdi}
+
+{
+    /* tailcall */
+    return puts(str);
+}
+
+
+int64_t sub_401036()
+
+int64_t var_8  {Frame offset -8}
+
+{
+    int64_t var_8 = 0;
+    /* tailcall */
+    return sub_401020();
+}
+
+
+uint64_t strlen(char const* arg1)
+
+char const* arg1  {Register rdi}
+
+{
+    /* tailcall */
+    return strlen(arg1);
+}
+
+
+int64_t sub_401046()
+
+int64_t var_8  {Frame offset -8}
+
+{
+    int64_t var_8 = 1;
+    /* tailcall */
+    return sub_401020();
+}
+
+
+int32_t printf(char const* format, ...)
+
+char const* format  {Register rdi}
+
+{
+    /* tailcall */
+    return printf();
+}
+
+
+int64_t sub_401056()
+
+int64_t var_8  {Frame offset -8}
+
+{
+    int64_t var_8 = 2;
+    /* tailcall */
+    return sub_401020();
+}
+
+
+char* fgets(char* buf, int32_t n, FILE* fp)
+
+FILE* fp  {Register rdx}
+int32_t n  {Register rsi}
+char* buf  {Register rdi}
+
+{
+    /* tailcall */
+    return fgets(buf, n, fp);
+}
+
+
+int64_t sub_401066()
+
+int64_t var_8  {Frame offset -8}
+
+{
+    int64_t var_8 = 3;
+    /* tailcall */
+    return sub_401020();
+}
+
+.plt (PROGBITS) section ended  {0x401020-0x401070}
+
+.text (PROGBITS) section started  {0x401070-0x40144a}
+
+void _start(int64_t arg1, int64_t arg2, void (* arg3)()) __noreturn
+
+int64_t stack_end  {Frame offset -8}
+void* const __return_addr  {Frame offset 0}
+void ubp_av  {Frame offset 8}
+int64_t stack_end_1  {Register rax}
+void (* arg3)()  {Register rdx}
+int64_t arg2  {Register rsi}
+int64_t arg1  {Register rdi}
+
+{
+    int64_t stack_end_1;
+    int64_t stack_end = stack_end_1;
+    __libc_start_main(main, __return_addr, &ubp_av, nullptr, nullptr, arg3, &stack_end);
+    /* no return */
+}
+
+                                                               f4 66 2e 0f 1f 84 00 00 00 00 00                       .f.........
+
+int64_t _dl_relocate_static_pie() __pure
+
+{
+    return;
+}
+
+               66 2e 0f 1f 84 00 00 00 00 00 90                                                       f..........
+
+void deregister_tm_clones()
+
+{
+    return;
+}
+
+                                          66 90                                                                f.
+                                                   66 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 40 00                   ff...........@.
+
+void register_tm_clones()
+
+{
+    return;
+}
+
+                                                   66 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 40 00                   ff...........@.
+
+void __do_global_dtors_aux()
+
+{
+    if (completed.0 != 0)
+        return;
+    
+    deregister_tm_clones();
+    completed.0 = 1;
+}
+
+                                                                                             90                                 .
+   66 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 40 00                                                   ff...........@.
+
+void frame_dummy()
+
+{
+    /* tailcall */
+    return register_tm_clones();
+}
+
+
+int64_t check(char* arg1)
+
+int64_t var_58  {Frame offset -58}
+int32_t var_2c_1  {Frame offset -2c}
+int32_t j  {Frame offset -28}
+int32_t i  {Frame offset -24}
+int32_t var_20_1  {Frame offset -20}
+int32_t var_1c_1  {Frame offset -1c}
+int32_t rax_17  {Register rax}
+char* arg1  {Register rdi}
+
+{
+    if (strlen(arg1) != 0x1b)
+        return 1;
+    
+    int64_t var_58;
+    __builtin_memcpy(&var_58, "\xe1\xa7\x1e\xf8\x75\x23\x7b\x61\xb9\x9d\xfc\x5a\x5b\xdf\x69\xd2\xfe\x1b\xed\xf4\xed\x67\xf4", 0x17);
+    int32_t var_1c_1 = 0;
+    int32_t var_20_1 = 0;
+    int32_t var_2c_1 = 0;
+    
+    for (int32_t i = 0; i <= 0x16; i += 1)
+    {
+        for (int32_t j = 0; j <= 7; j += 1)
+        {
+            if (var_20_1 == 0)
+                var_20_1 += 1;
+            
+            int32_t rax_17;
+            rax_17 = (((int32_t)arg1[((int64_t)var_1c_1)]) & (1 << (7 - var_20_1))) > 0;
+            
+            if (rax_17 != ((int8_t)(((int32_t)*(uint8_t*)(&var_58 + ((int64_t)i))) & (1 << (7 - j))) > 0))
+                return 1;
+            
+            var_20_1 += 1;
+            
+            if (var_20_1 == 8)
+            {
+                var_20_1 = 0;
+                var_1c_1 += 1;
+            }
+            
+            if (((int64_t)var_1c_1) == strlen(arg1))
+                return 0;
+        }
+    }
+    
+    return 0;
+}
+
+
+int32_t main(int32_t argc, char** argv, char** envp)
+
+int64_t var_118  {Frame offset -118}
+char** envp  {Register rdx}
+char** argv  {Register rsi}
+int32_t argc  {Register rdi}
+
+{
+    int64_t var_118;
+    __builtin_memset(&var_118, 0, 0x100);
+    printf("Enter the password: ");
+    fgets(&var_118, 0x100, stdin);
+    
+    if (check(&var_118) == 1)
+    {
+        puts("Wrong :(");
+        return 1;
+    }
+    
+    puts("Correct!! :D");
+    return 0;
+}
+
+.text (PROGBITS) section ended  {0x401070-0x40144a}
+
+                              00 00                                                                        ..
+
+.fini (PROGBITS) section started  {0x40144c-0x401459}
+
+int64_t _fini() __pure
+
+{
+    return;
+}
+
+.fini (PROGBITS) section ended  {0x40144c-0x401459}
+
+.rodata (PROGBITS) section started  {0x402000-0x40203b}
+uint32_t _IO_stdin_used = 0x20001
+
+            00 00 00 00                                                                              ....
+__dso_handle:
+                        00 00 00 00 00 00 00 00                                                          ........
+
+char const data_402010[0x15] = "Enter the password: ", 0
+char const data_402025[0x9] = "Wrong :(", 0
+char const data_40202e[0xd] = "Correct!! :D", 0
+.rodata (PROGBITS) section ended  {0x402000-0x40203b}
+
+                                                                                 00                                         .
+
+.eh_frame_hdr (PROGBITS) section started  {0x40203c-0x402070}
+__GNU_EH_FRAME_HDR:
+                                                                                    01 1b 03 3b                              ...;
+30 00 00 00 05 00 00 00 e4 ef ff ff 74 00 00 00 34 f0 ff ff 4c 00 00 00 64 f0 ff ff 60 00 00 00  0...........t...4...L...d...`...
+1a f1 ff ff 9c 00 00 00 69 f2 ff ff c0 00 00 00                                                  ........i.......
+.eh_frame_hdr (PROGBITS) section ended  {0x40203c-0x402070}
+
+.eh_frame (PROGBITS) section started  {0x402070-0x402120}
+                                                14 00 00 00 00 00 00 00 01 7a 52 00 01 78 10 01                  .........zR..x..
+1b 0c 07 08 90 01 00 00 10 00 00 00 1c 00 00 00 e0 ef ff ff 26 00 00 00 00 44 07 10 10 00 00 00  ....................&....D......
+30 00 00 00 fc ef ff ff 05 00 00 00 00 00 00 00 24 00 00 00 44 00 00 00 68 ef ff ff 50 00 00 00  0...............$...D...h...P...
+00 0e 10 46 0e 18 4a 0f 0b 77 08 80 00 3f 1a 3b 2a 33 24 22 00 00 00 00 20 00 00 00 6c 00 00 00  ...F..J..w...?.;*3$".... ...l...
+76 f0 ff ff 4f 01 00 00 00 41 0e 10 86 02 43 0d 06 45 83 03 03 45 01 0c 07 08 00 00 1c 00 00 00  v...O....A....C..E...E..........
+90 00 00 00 a1 f1 ff ff a5 01 00 00 00 41 0e 10 86 02 43 0d 06 03 a0 01 0c 07 08 00              .............A....C.........
+__FRAME_END__:
+                                                                                    00 00 00 00                              ....
+.eh_frame (PROGBITS) section ended  {0x402070-0x402120}
+
+.init_array section started  {0x403df8-0x403e00}
+void (* __frame_dummy_init_array_entry[0x1])() = 
+{
+    [0x0] = frame_dummy
+}
+.init_array section ended  {0x403df8-0x403e00}
+
+.fini_array section started  {0x403e00-0x403e08}
+void (* __do_global_dtors_aux_fini_array_entry[0x1])() = 
+{
+    [0x0] = __do_global_dtors_aux
+}
+.fini_array section ended  {0x403e00-0x403e08}
+
+.dynamic (DYNAMIC) section started  {0x403e08-0x403fd8}
+struct Elf64_Dyn __elf_dynamic_table[0x18] = 
+{
+    [0x00] = 
+    {
+        enum e_dyn_tag d_tag = DT_NEEDED
+        uint64_t d_val = 0x32
+    }
+    [0x01] = 
+    {
+        enum e_dyn_tag d_tag = DT_INIT
+        uint64_t d_val = 0x401000
+    }
+    [0x02] = 
+    {
+        enum e_dyn_tag d_tag = DT_FINI
+        uint64_t d_val = 0x40144c
+    }
+    [0x03] = 
+    {
+        enum e_dyn_tag d_tag = DT_INIT_ARRAY
+        uint64_t d_val = 0x403df8
+    }
+    [0x04] = 
+    {
+        enum e_dyn_tag d_tag = DT_INIT_ARRAYSZ
+        uint64_t d_val = 0x8
+    }
+    [0x05] = 
+    {
+        enum e_dyn_tag d_tag = DT_FINI_ARRAY
+        uint64_t d_val = 0x403e00
+    }
+    [0x06] = 
+    {
+        enum e_dyn_tag d_tag = DT_FINI_ARRAYSZ
+        uint64_t d_val = 0x8
+    }
+    [0x07] = 
+    {
+        enum e_dyn_tag d_tag = DT_GNU_HASH
+        uint64_t d_val = 0x4003c0
+    }
+    [0x08] = 
+    {
+        enum e_dyn_tag d_tag = DT_STRTAB
+        uint64_t d_val = 0x4004a8
+    }
+    [0x09] = 
+    {
+        enum e_dyn_tag d_tag = DT_SYMTAB
+        uint64_t d_val = 0x4003e8
+    }
+    [0x0a] = 
+    {
+        enum e_dyn_tag d_tag = DT_STRSZ
+        uint64_t d_val = 0x62
+    }
+    [0x0b] = 
+    {
+        enum e_dyn_tag d_tag = DT_SYMENT
+        uint64_t d_val = 0x18
+    }
+    [0x0c] = 
+    {
+        enum e_dyn_tag d_tag = DT_DEBUG
+        uint64_t d_val = 0x0
+    }
+    [0x0d] = 
+    {
+        enum e_dyn_tag d_tag = DT_PLTGOT
+        uint64_t d_val = 0x403fe8
+    }
+    [0x0e] = 
+    {
+        enum e_dyn_tag d_tag = DT_PLTRELSZ
+        uint64_t d_val = 0x60
+    }
+    [0x0f] = 
+    {
+        enum e_dyn_tag d_tag = DT_PLTREL
+        uint64_t d_val = 0x7
+    }
+    [0x10] = 
+    {
+        enum e_dyn_tag d_tag = DT_JMPREL
+        uint64_t d_val = 0x400598
+    }
+    [0x11] = 
+    {
+        enum e_dyn_tag d_tag = DT_RELA
+        uint64_t d_val = 0x400550
+    }
+    [0x12] = 
+    {
+        enum e_dyn_tag d_tag = DT_RELASZ
+        uint64_t d_val = 0x48
+    }
+    [0x13] = 
+    {
+        enum e_dyn_tag d_tag = DT_RELAENT
+        uint64_t d_val = 0x18
+    }
+    [0x14] = 
+    {
+        enum e_dyn_tag d_tag = DT_VERNEED
+        uint64_t d_val = 0x400520
+    }
+    [0x15] = 
+    {
+        enum e_dyn_tag d_tag = DT_VERNEEDNUM
+        uint64_t d_val = 0x1
+    }
+    [0x16] = 
+    {
+        enum e_dyn_tag d_tag = DT_VERSYM
+        uint64_t d_val = 0x40050a
+    }
+    [0x17] = 
+    {
+        enum e_dyn_tag d_tag = DT_NULL
+        uint64_t d_val = 0x0
+    }
+}
+
+                        00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00          ........................
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................................
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00                          ........................
+.dynamic (DYNAMIC) section ended  {0x403e08-0x403fd8}
+
+.got (PROGBITS) section started  {0x403fd8-0x403fe8}
+void (* const __libc_start_main)(int32_t (* main)(int32_t argc, char** argv, char** envp), int32_t argc, char** ubp_av, void (* init)(), void (* fini)(), void (* rtld_fini)(), void* stack_end) __noreturn = __libc_start_main
+int64_t (* const __gmon_start__)() = __gmon_start__
+.got (PROGBITS) section ended  {0x403fd8-0x403fe8}
+
+.got.plt (PROGBITS) section started  {0x403fe8-0x404020}
+void* _GLOBAL_OFFSET_TABLE_ = __elf_dynamic_table
+int64_t data_403ff0 = 0x0
+int64_t data_403ff8 = 0x0
+int32_t (* const puts)(char const* str) = puts
+uint64_t (* const strlen)(char const*) = strlen
+int32_t (* const printf)(char const* format, ...) = printf
+char* (* const fgets)(char* buf, int32_t n, FILE* fp) = fgets
+.got.plt (PROGBITS) section ended  {0x403fe8-0x404020}
+
+.data (PROGBITS) section started  {0x404020-0x404024}
+__data_start:
+00 00 00 00                                                                                      ....
+.data (PROGBITS) section ended  {0x404020-0x404024}
+
+__bss_start:
+            00 00 00 00                                                                              ....
+__TMC_END__:
+                        00 00 00 00 00 00 00 00                                                          ........
+
+.bss (NOBITS) section started  {0x404030-0x404040}
+uint64_t* const stdin = 0x0
+uint8_t completed.0 = 0x0
+
+                                                                           00 00 00 00 00 00 00                           .......
+.bss (NOBITS) section ended  {0x404030-0x404040}
+
+.extern section started  {0x404040-0x404070}
+extern __gmon_start__
+extern void __libc_start_main(int32_t (* main)(int32_t argc, char** argv, char** envp), int32_t argc, char** ubp_av, void (* init)(), void (* fini)(), void (* rtld_fini)(), void* stack_end) __noreturn
+extern char* fgets(char* buf, int32_t n, FILE* fp)
+extern int32_t printf(char const* format, ...)
+extern int32_t puts(char const* str)
+extern uint64_t strlen(char const*)
+.extern section ended  {0x404040-0x404070}
+
+.synthetic_builtins section started  {0x404070-0x404098}
+extern void* __builtin_memcpy(void* dest, void const* src, uint64_t n)
+extern void* __builtin_memset(void* s, int32_t c, uint64_t n)
+extern char* __builtin_strcpy(char* dest, char const* src)
+extern char* __builtin_strncpy(char* dest, char const* src, uint64_t n)
+extern wchar32* __builtin_wcscpy(wchar32* dest, wchar32 const* src)
+.synthetic_builtins section ended  {0x404070-0x404098}
+
